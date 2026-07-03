@@ -99,6 +99,7 @@ nav{
   background:linear-gradient(105deg, var(--accent-1), var(--accent-2));
   box-shadow:0 2px 14px rgba(124,108,246,0.35);
 }
+.nav-right{display:flex; align-items:center; gap:10px;}
 .nav-cta{
   font-size:13px; padding:9px 18px; border:1px solid var(--border); border-radius:100px;
   transition:border-color 0.2s, background 0.2s, transform 0.2s;
