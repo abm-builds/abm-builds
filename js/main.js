@@ -6,13 +6,32 @@ document.addEventListener('DOMContentLoaded', function () {
     toggle.addEventListener('click', function () {
       links.classList.toggle('open');
     });
-    // close on outside click
     document.addEventListener('click', function(e) {
       if (!toggle.contains(e.target) && !links.contains(e.target)) {
         links.classList.remove('open');
       }
     });
   }
+
+  // theme toggle
+  var root = document.documentElement;
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    var saved = localStorage.getItem('abm-theme') || 'dark';
+    root.setAttribute('data-theme', saved);
+    themeBtn.textContent = saved === 'light' ? '🌙' : '☀️';
+    themeBtn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('abm-theme', next);
+      themeBtn.textContent = next === 'light' ? '🌙' : '☀️';
+    });
+  }
+
+  // apply saved theme immediately to avoid flash
+  var earlyTheme = localStorage.getItem('abm-theme') || 'dark';
+  root.setAttribute('data-theme', earlyTheme);
 
   // fade-in on load
   document.body.style.opacity = '0';
